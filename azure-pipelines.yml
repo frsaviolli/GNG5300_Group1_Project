@@ -5,7 +5,7 @@ pool:
   name: fernando-laptop
 
 jobs:
-- job: BuildDockerImage
+- job: BuildAndPushDockerImage
   displayName: 'Build Docker Image'
   steps:
   - checkout: self
@@ -22,3 +22,10 @@ jobs:
       repository: 'fraou022/final-group-project'
       command: 'push'
       tags: 'latest'
+
+  - task: KubernetesManifest@1
+    inputs:
+      action: 'deploy'
+      connectionType: 'kubernetesServiceConnection'
+      kubernetesServiceConnection: 'final-group-project-kube'
+      namespace: 'prd'
