@@ -11,9 +11,8 @@ jobs:
   - checkout: self
   - task: Docker@2
     inputs:
-      containerRegistry: 'yourAzureContainerRegistryServiceConnection'  # Replace with your Azure Container Registry service connection
-      repository: 'youracr.azurecr.io/yourrepository'  # Replace with your Azure Container Registry and repository name
+      containerRegistry: 'docker-hub'  # Replace with your Azure Container Registry service connection
+      repository: 'fraou022/final-group-project'  # Replace with your Azure Container Registry and repository name
       command: 'build'
       Dockerfile: '**/Project/Dockerfile'
       tags: 'latest'
-
