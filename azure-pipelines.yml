@@ -5,7 +5,7 @@
 trigger:
 - main
 
-pool: Windows-Agent
+pool: fernando-laptop
 
 resources:
 - repo: self
