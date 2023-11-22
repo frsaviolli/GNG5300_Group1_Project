@@ -5,10 +5,6 @@
 trigger:
 - main
 
-pool:
-  name: fernando-laptop
-
-
 resources:
 - repo: self
 
@@ -22,7 +18,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: ubuntu-latest
+      name: fernando-laptop
     steps:
     - task: Docker@2
       displayName: Build an image
