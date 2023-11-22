@@ -5,7 +5,9 @@
 trigger:
 - main
 
-pool: fernando-laptop
+pool:
+  name: fernando-laptop
+
 
 resources:
 - repo: self
