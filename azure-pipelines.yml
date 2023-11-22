@@ -16,3 +16,9 @@ jobs:
       command: 'build'
       Dockerfile: '**/Project/Dockerfile'
       tags: 'latest'
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'docker-hub'
+      repository: 'fraou022/final-group-project'
+      command: 'push'
+      tags: 'latest'
