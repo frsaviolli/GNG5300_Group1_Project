@@ -22,10 +22,3 @@ jobs:
       repository: 'fraou022/final-group-project'
       command: 'push'
       tags: 'latest'
-
-  - task: KubernetesManifest@1
-    inputs:
-      action: 'deploy'
-      connectionType: 'kubernetesServiceConnection'
-      kubernetesServiceConnection: 'final-group-project-kube'
-      namespace: 'prd'
