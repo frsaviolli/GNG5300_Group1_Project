@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: GNG5300_Group1_Project_PRD
+  name: gng5300-group1-project-prd
 spec:
   replicas: 1  # Number of pods to run
   selector:
