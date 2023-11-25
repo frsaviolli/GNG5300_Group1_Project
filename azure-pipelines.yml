@@ -27,7 +27,7 @@ stages:
 
 - stage: Deploy
   displayName: Deploy stage
-  dependsOn: Build
+  dependsOn: BuildAndPush
   jobs:
   - deployment: Deploy
     displayName: Deploy job
