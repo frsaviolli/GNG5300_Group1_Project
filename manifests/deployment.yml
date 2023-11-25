@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: GNG5300_Group1_Project_PRD
+spec:
+  replicas: 1  # Number of pods to run
+  selector:
+    matchLabels:
+      app: gng5300-group1-project-prd
+  template:
+    metadata:
+      labels:
+        app: gng5300-group1-project-prd
+    spec:
+      containers:
+      - name: gng5300-group1-project-prd
+        image: fraou022final-group-project:latest  # Replace with your actual image
+        ports:
+        - containerPort: 5000  # Port on which your application listens
