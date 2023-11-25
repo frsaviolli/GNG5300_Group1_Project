@@ -4,21 +4,23 @@ trigger:
 pool:
   name: fernando-laptop
 
-jobs:
-- job: BuildAndPushDockerImage
-  displayName: 'Build Docker Image'
-  steps:
-  - checkout: self
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'docker-hub'  # Replace with your Azure Container Registry service connection
-      repository: 'fraou022/final-group-project'  # Replace with your Azure Container Registry and repository name
-      command: 'build'
-      Dockerfile: '**/Project/Dockerfile'
-      tags: 'latest'
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'docker-hub'
-      repository: 'fraou022/final-group-project'
-      command: 'push'
-      tags: 'latest'
+stages:
+- stage: Build and Push
+  displayName: Build and Push stage
+  jobs:  
+  - job: BuildAndPush
+    displayName: Build and push job
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: fraou022/final-group-project
+        dockerfile: '**/Project/Dockerfile'
+        containerRegistry: 'docker-hub'
+        tags: 'latest'
+
+    - task: PublishPipelineArtifact@1
+      inputs:
+        artifactName: 'manifests'
+        path: 'manifests'
