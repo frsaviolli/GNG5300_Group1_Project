@@ -5,7 +5,7 @@ pool:
   name: fernando-laptop
 
 stages:
-- stage: Build and Push
+- stage: BuildAndPush
   displayName: Build and Push stage
   jobs:  
   - job: BuildAndPush
