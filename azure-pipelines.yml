@@ -31,7 +31,7 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: Deploy job
-    environment: 'myenv.aksnamespace' #customize with your environment
+    environment: 'PRD.prd' #customize with your environment
     strategy:
       runOnce:
         deploy:
