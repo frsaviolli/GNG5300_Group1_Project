@@ -24,3 +24,32 @@ stages:
       inputs:
         artifactName: 'manifests'
         path: 'manifests'
+
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy job
+    environment: 'myenv.aksnamespace' #customize with your environment
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'manifests'
+              downloadPath: '$(System.ArtifactsDirectory)/manifests'
+
+          - task: KubernetesManifest@1
+            inputs:
+              action: 'deploy'
+              connectionType: 'azureResourceManager'
+              azureSubscriptionConnection: 'GNG5300_Group1_Project_ResourceGroup'
+              azureResourceGroup: 'GNG5300_Group1_Project'
+              kubernetesCluster: 'GNG5300_Group1_Project_Cluster'
+              namespace: 'prd'
+              manifests: |
+                manifests/service.yml 
+                manifests/deployment.yml
+              containers: 'fraou022/final-group-project:latest'
