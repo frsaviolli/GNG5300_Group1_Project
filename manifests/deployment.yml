@@ -15,5 +15,6 @@ spec:
       containers:
       - name: gng5300-group1-project-dev
         image: fraou022/gng5300-group1-project:dev  # Replace with your actual image
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000  # Port on which your application listens
