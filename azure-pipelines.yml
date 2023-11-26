@@ -18,11 +18,11 @@ stages:
         repository: fraou022/final-group-project
         dockerfile: '**/Project/Dockerfile'
         containerRegistry: 'docker-hub'
-        tags: 'stg'
+        tags: 'stg1'
 
     - task: PublishPipelineArtifact@1
       inputs:
-        artifactName: 'manifests-stg'
+        artifactName: 'manifests-stg1'
         path: 'manifests'
 
 - stage: Deploy
@@ -38,7 +38,7 @@ stages:
           steps:
           - task: DownloadPipelineArtifact@2
             inputs:
-              artifactName: 'manifests-stg'
+              artifactName: 'manifests-stg1'
               downloadPath: '$(System.ArtifactsDirectory)/manifests'
 
           - task: KubernetesManifest@1
@@ -52,4 +52,4 @@ stages:
               manifests: |
                 manifests/service.yml 
                 manifests/deployment.yml
-              containers: 'fraou022/final-group-project:stg'
+              containers: 'fraou022/final-group-project:stg1'
