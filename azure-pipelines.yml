@@ -15,14 +15,14 @@ stages:
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
-        repository: fraou022/final-group-project
+        repository: fraou022/gng5300-group1-project
         dockerfile: '**/Project/Dockerfile'
-        containerRegistry: 'docker-hub'
-        tags: 'stg1'
+        containerRegistry: 'docker-hub-fraou022'
+        tags: 'stg'
 
     - task: PublishPipelineArtifact@1
       inputs:
-        artifactName: 'manifests-stg1'
+        artifactName: 'manifests-stg'
         path: 'manifests'
 
 - stage: Deploy
@@ -38,7 +38,7 @@ stages:
           steps:
           - task: DownloadPipelineArtifact@2
             inputs:
-              artifactName: 'manifests-stg1'
+              artifactName: 'manifests-stg'
               downloadPath: '$(System.ArtifactsDirectory)/manifests'
 
           - task: KubernetesManifest@1
@@ -52,4 +52,4 @@ stages:
               manifests: |
                 manifests/service.yml 
                 manifests/deployment.yml
-              containers: 'fraou022/final-group-project:stg1'
+              containers: 'fraou022/gng5300-group1-project:stg'
