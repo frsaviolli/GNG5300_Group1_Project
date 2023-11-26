@@ -49,7 +49,5 @@ stages:
               azureResourceGroup: 'GNG5300_Group1_Project'
               kubernetesCluster: 'GNG5300_Group1_Project_Cluster'
               namespace: 'dev'
-              manifests: |
-                manifests/service.yml 
-                manifests/deployment.yml
+              manifests: '**/manifests/*.yml'
               containers: 'fraou022/gng5300-group1-project:dev'
