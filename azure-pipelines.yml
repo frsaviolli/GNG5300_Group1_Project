@@ -15,9 +15,9 @@ stages:
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
-        repository: fraou022/final-group-project
+        repository: fraou022/gng5300-group1-project
         dockerfile: '**/Project/Dockerfile'
-        containerRegistry: 'docker-hub'
+        containerRegistry: 'docker-hub-fraou022'
         tags: 'latest'
 
     - task: PublishPipelineArtifact@1
@@ -52,4 +52,4 @@ stages:
               manifests: |
                 manifests/service.yml 
                 manifests/deployment.yml
-              containers: 'fraou022/final-group-project:latest'
+              containers: 'fraou022/gng5300-group1-project:latest'
