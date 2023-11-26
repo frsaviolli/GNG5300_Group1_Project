@@ -1,5 +1,5 @@
 trigger:
-- staging
+- development
 
 pool:
   name: fernando-laptop
@@ -18,11 +18,11 @@ stages:
         repository: fraou022/final-group-project
         dockerfile: '**/Project/Dockerfile'
         containerRegistry: 'docker-hub'
-        tags: 'stg'
+        tags: 'dev'
 
     - task: PublishPipelineArtifact@1
       inputs:
-        artifactName: 'manifests-stg'
+        artifactName: 'manifests-dev'
         path: 'manifests'
 
 - stage: Deploy
@@ -31,14 +31,14 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: Deploy job
-    environment: 'STG.stg' #customize with your environment
+    environment: 'DEV.dev' #customize with your environment
     strategy:
       runOnce:
         deploy:
           steps:
           - task: DownloadPipelineArtifact@2
             inputs:
-              artifactName: 'manifests-stg'
+              artifactName: 'manifests-dev'
               downloadPath: '$(System.ArtifactsDirectory)/manifests'
 
           - task: KubernetesManifest@1
@@ -48,8 +48,8 @@ stages:
               azureSubscriptionConnection: 'GNG5300_Group1_Project_ResourceGroup'
               azureResourceGroup: 'GNG5300_Group1_Project'
               kubernetesCluster: 'GNG5300_Group1_Project_Cluster'
-              namespace: 'stg'
+              namespace: 'dev'
               manifests: |
                 manifests/service.yml 
                 manifests/deployment.yml
-              containers: 'fraou022/final-group-project:stg'
+              containers: 'fraou022/final-group-project:dev'

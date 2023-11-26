@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gng5300-group1-project-stg
+  name: gng5300-group1-project-dev
 spec:
   replicas: 1  # Number of pods to run
   selector:
     matchLabels:
-      app: gng5300-group1-project-stg
+      app: gng5300-group1-project-dev
   template:
     metadata:
       labels:
-        app: gng5300-group1-project-stg
+        app: gng5300-group1-project-dev
     spec:
       containers:
-      - name: gng5300-group1-project-stg
-        image: fraou022/final-group-project:stg  # Replace with your actual image
+      - name: gng5300-group1-project-dev
+        image: fraou022/final-group-project:dev  # Replace with your actual image
         ports:
         - containerPort: 5000  # Port on which your application listens
