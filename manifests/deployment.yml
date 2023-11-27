@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gng5300-group1-project-dev
+  labels: 
+    timestamp: $(Build.SourceVersion)
 spec:
   replicas: 1  # Number of pods to run
   selector:
@@ -11,11 +13,11 @@ spec:
     metadata:
       labels:
         app: gng5300-group1-project-dev
+        timestamp: $(Build.SourceVersion)
     spec:
       containers:
       - name: gng5300-group1-project-dev
         image: fraou022/gng5300-group1-project:dev  # Replace with your actual image
         imagePullPolicy: Always
-        command: ["/bin/sh", "-c", "sleep 1"]
         ports:
         - containerPort: 5000  # Port on which your application listens
