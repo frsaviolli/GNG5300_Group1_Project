@@ -2,19 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gng5300-group1-project-dev
-  annotations: 
-    timestamp: $(Build.SourceVersion)
 spec:
   replicas: 1  # Number of pods to run
   selector:
     matchLabels:
       app: gng5300-group1-project-dev
+      version: $(TIMESTAMP)
   template:
     metadata:
       labels:
         app: gng5300-group1-project-dev
-      annotations: 
-        timestamp: $(Build.SourceVersion)
+        version: $(TIMESTAMP)
     spec:
       containers:
       - name: gng5300-group1-project-dev
@@ -22,3 +20,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000  # Port on which your application listens
+        env:
+        - name: TIMESTAMP
+          value: $(Build.SourceVersion)
