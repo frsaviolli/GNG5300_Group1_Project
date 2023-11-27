@@ -51,3 +51,5 @@ stages:
               namespace: 'dev'
               manifests: '**/manifests/*.yml'
               containers: 'fraou022/gng5300-group1-project:dev'
+          
+          - script: kubectl rollout restart deployment gng5300-group1-project-dev
