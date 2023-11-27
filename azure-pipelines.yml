@@ -51,8 +51,3 @@ stages:
               namespace: 'dev'
               manifests: '$(System.ArtifactsDirectory)/manifests/*.yml'
               containers: 'fraou022/gng5300-group1-project:dev'
-          
-          - script: |
-              az account set --subscription 5ffaf89f-60dc-4425-acb6-4a8e9ba993f4
-              az aks get-credentials --resource-group GNG5300_Group1_Project --name GNG5300_Group1_Project_Cluster
-              kubectl rollout restart deployment gng5300-group1-project-dev
