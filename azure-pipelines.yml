@@ -41,6 +41,15 @@ stages:
               artifactName: 'manifests-dev'
               downloadPath: '$(System.ArtifactsDirectory)/manifests'
 
+          - task: ReplaceTokens@5
+            inputs:
+              targetFiles: '$(System.ArtifactsDirectory)/manifests/*.yml'  # Specify the path to your YAML file
+              encoding: 'auto'
+              writeBOM: true
+              tokenRegex: 'REPLACE_WITH_TIMESTAMP'
+              // You can use $(Build.SourceVersion) or any other variable here
+              newToken: '$(Build.SourceVersion)'
+              
           - task: KubernetesManifest@1
             inputs:
               action: 'deploy'

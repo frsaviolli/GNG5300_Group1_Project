@@ -7,12 +7,12 @@ spec:
   selector:
     matchLabels:
       app: gng5300-group1-project-dev
-      version: $(TIMESTAMP)
+      version: REPLACE_WITH_TIMESTAMP
   template:
     metadata:
       labels:
         app: gng5300-group1-project-dev
-        version: $(TIMESTAMP)
+        version: REPLACE_WITH_TIMESTAMP
     spec:
       containers:
       - name: gng5300-group1-project-dev
@@ -20,6 +20,3 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000  # Port on which your application listens
-        env:
-        - name: TIMESTAMP
-          value: $(Build.SourceVersion)
