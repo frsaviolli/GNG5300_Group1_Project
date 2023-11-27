@@ -23,7 +23,7 @@ stages:
     - task: PublishPipelineArtifact@1
       inputs:
         artifactName: 'manifests-dev'
-        path: '**/manifests'
+        path: 'manifests'
 
 - stage: Deploy
   displayName: Deploy stage
