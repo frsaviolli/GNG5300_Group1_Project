@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gng5300-group1-project-dev
-  labels: 
+  annotations: 
     timestamp: $(Build.SourceVersion)
 spec:
   replicas: 1  # Number of pods to run
@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: gng5300-group1-project-dev
+      annotations:
         timestamp: $(Build.SourceVersion)
     spec:
       containers:
