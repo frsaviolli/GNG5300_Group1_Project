@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gng5300-group1-project-dev
-  annotations: 
-    timestamp: $(Build.SourceVersion)
+  labels: 
+    timestamp: $(Build.SourceVersion.Replace(".", "_").Replace("/", "_"))
 spec:
   replicas: 1  # Number of pods to run
   selector:
@@ -13,8 +13,7 @@ spec:
     metadata:
       labels:
         app: gng5300-group1-project-dev
-      annotations:
-        timestamp: $(Build.SourceVersion)
+        timestamp: $(Build.SourceVersion.Replace(".", "_").Replace("/", "_"))
     spec:
       containers:
       - name: gng5300-group1-project-dev
