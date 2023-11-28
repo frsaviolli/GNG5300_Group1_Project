@@ -18,7 +18,7 @@ stages:
         repository: fraou022/gng5300-group1-project
         dockerfile: '**/Project/Dockerfile'
         containerRegistry: 'docker-hub-fraou022'
-        tags: '$(Build.SourceVersion)'
+        tags: 'dev'
 
     - task: PublishPipelineArtifact@1
       inputs:
@@ -41,13 +41,25 @@ stages:
               artifactName: 'manifests-dev'
               downloadPath: '$(System.ArtifactsDirectory)/manifests'
 
-          - task: KubernetesManifest@1
+          - task: Kubernetes@1
+            displayName: 'Apply DEV Manifest'
             inputs:
-              action: 'deploy'
-              connectionType: 'azureResourceManager'
+              connectionType: 'Azure Resource Manager'
               azureSubscriptionConnection: 'GNG5300_Group1_Project_ResourceGroup'
               azureResourceGroup: 'GNG5300_Group1_Project'
               kubernetesCluster: 'GNG5300_Group1_Project_Cluster'
               namespace: 'dev'
-              manifests: '$(System.ArtifactsDirectory)/manifests/*.yml'
-              containers: 'fraou022/gng5300-group1-project:$(Build.SourceVersion)'
+              command: 'apply'
+              arguments: '-f $(System.ArtifactsDirectory)/manifests/deployment.yml'
+
+
+          #- task: KubernetesManifest@1
+          #  inputs:
+          #    action: 'deploy'
+          #    connectionType: 'azureResourceManager'
+          #    azureSubscriptionConnection: 'GNG5300_Group1_Project_ResourceGroup'
+          #    azureResourceGroup: 'GNG5300_Group1_Project'
+          #    kubernetesCluster: 'GNG5300_Group1_Project_Cluster'
+          #    namespace: 'dev'
+          #    manifests: '$(System.ArtifactsDirectory)/manifests/*.yml'
+          #    containers: 'fraou022/gng5300-group1-project:dev'
