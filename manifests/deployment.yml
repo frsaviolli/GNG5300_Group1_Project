@@ -7,12 +7,10 @@ spec:
   selector:
     matchLabels:
       app: gng5300-group1-project-dev
-      version: REPLACE_WITH_TIMESTAMP
   template:
     metadata:
       labels:
         app: gng5300-group1-project-dev
-        version: REPLACE_WITH_TIMESTAMP
     spec:
       containers:
       - name: gng5300-group1-project-dev
