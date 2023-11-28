@@ -45,6 +45,7 @@ stages:
             displayName: 'Apply DEV Manifest'
             inputs:
               connectionType: 'Azure Resource Manager'
+              azureSubscriptionEndpoint: 'GNG5300_Group1_Project_ResourceGroup'
               azureSubscriptionConnection: 'GNG5300_Group1_Project_ResourceGroup'
               azureResourceGroup: 'GNG5300_Group1_Project'
               kubernetesCluster: 'GNG5300_Group1_Project_Cluster'
